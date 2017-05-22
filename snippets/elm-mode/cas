@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: cas
+# key: cas
+# expand-env: ((yas-indent-line 'fixed))
+# --
+case $1 of
+  $2 ->
+      $3

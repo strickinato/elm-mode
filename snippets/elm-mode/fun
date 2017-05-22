@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: fun
+# key: fun
+# expand-env: ((yas-indent-line 'fixed))
+# --
+{-| -}
+$1 : $2 -> $3
+$1 $4 =
+  $0

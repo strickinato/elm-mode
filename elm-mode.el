@@ -29,6 +29,7 @@
 (require 'elm-imenu)
 (require 'elm-indent)
 (require 'elm-interactive)
+(require 'elm-snippets)
 (require 'elm-font-lock)
 
 (defgroup elm nil
@@ -97,8 +98,11 @@
 
   (add-hook 'after-save-hook #'elm-mode-after-save-handler nil t)
 
+  (load-elm-snippets)
+  (expand-snippet-maybe)
   (turn-on-elm-font-lock)
-  (turn-on-elm-indent))
+  (turn-on-elm-indent)
+  )
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.elm\\'" . elm-mode))

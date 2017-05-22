@@ -113,6 +113,29 @@ Relies on `haskell-mode' stuff."
           elm-main-file
         (f-join source-dir elm-main-file)))))
 
+(defun elm--module-for-path ()
+  "Determine module name based on what file would be"
+  (mapconcat 'identity (elm--module-dir-list) "."))
+
+(defun elm--relative-module-for-path (module-name)
+  "THis is the thing"
+  (mapconcat
+   'identity
+   (nconc (butlast (elm--module-dir-list)) module-name)
+   "."))
+
+(defun elm--module-dir-list ()
+  "Determine module name based on what file would be"
+  (interactive)
+  (let-alist (elm--read-dependency-file)
+    (let* ((source-dir (aref .source-directories 0))
+           (file-name (elm--buffer-local-file-name))
+           (rel-file-name (f-relative file-name source-dir))
+           (bare-module-path (replace-regexp-in-string "\.elm" "" rel-file-name)))
+      (split-string bare-module-path "\/")
+      ))
+  )
+
 (defun elm--shell-and-command ()
   "Determine the appropriate 'and' command for the current shell.
 
